@@ -9,8 +9,8 @@ Deployment is tested on K3s-v1.24.8+k3s1.
 
 ## Usage
 
-1. Create a namespace for Home assistant.
+1. Create a namespace for Home assistant:  
    ```kubectl create ns home-assistant```
 
-2. Build the deployment by using kubectl's built-in kustomize feature
+2. Build the deployment by using kubectl's built-in kustomize feature:  
    ```kubectl apply -k overlay -n home-assistant```
