@@ -1,0 +1,41 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../base
+
+configMapGenerator:
+- name: home-assistant-config
+  behavior: replace
+  literals:
+  - TZ="Europe/Budapest"
+
+patchesJson6902:
+- target:
+    version: v1
+    kind: Ingress
+    name: home-assistant
+  patch: |-
+    - op: replace
+      path: /spec/ingressClassName
+      value: nginx
+    - op: replace
+      path: /spec/tls/0/hosts/0
+      value: example.com
+    - op: replace
+      path: /spec/tls/0/secretName
+      value: example.com-production-secret
+    - op: replace
+      path: /spec/rules/0/host
+      value: example.com
+- target:
+    version: v1
+    kind: PersistentVolumeClaim
+    name: home-assistant-config-root
+  patch: |-
+    - op: add
+      path: /spec/storageClassName
+      value: nfs-client
+
+images:
+- name: ghcr.io/home-assistant/home-assistant
+  newTag: 2022.12.1
