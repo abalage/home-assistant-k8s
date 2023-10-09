@@ -27,14 +27,6 @@ patchesJson6902:
     - op: replace
       path: /spec/rules/0/host
       value: example.com
-- target:
-    version: v1
-    kind: PersistentVolumeClaim
-    name: home-assistant-config-root
-  patch: |-
-    - op: add
-      path: /spec/storageClassName
-      value: nfs-client
 
 images:
 - name: ghcr.io/home-assistant/home-assistant
