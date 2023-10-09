@@ -30,4 +30,4 @@ patchesJson6902:
 
 images:
 - name: ghcr.io/home-assistant/home-assistant
-  newTag: 2022.12.1
+  newTag: 2023.10.1
